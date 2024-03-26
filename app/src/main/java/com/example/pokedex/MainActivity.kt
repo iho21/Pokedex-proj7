@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var typeTextView: TextView
     private lateinit var loadPokemonButton: Button
 
-    // Variables to hold the Pokemon's name and type
+
     private var pokemonName: String = ""
     private var pokemonType: String = ""
 
@@ -31,17 +31,13 @@ class MainActivity : AppCompatActivity() {
         typeTextView = findViewById(R.id.type)
         loadPokemonButton = findViewById(R.id.loadPokemonButton)
 
-        // Set initial values for Pokemon name and type
+
         pokemonNameTextView.text = "Name: $pokemonName"
         typeTextView.text = "Type: $pokemonType"
 
         loadPokemonButton.setOnClickListener {
-            // Simulate fetching Pokemon data and update name and type
-            pokemonName = "Pikachu" // Replace with actual Pokemon name
-            pokemonType = "Electric" // Replace with actual Pokemon type
 
-            // Update TextViews with the new Pokemon data
-            updatePokemonData()
+            fetchRandomPokemon()
         }
     }
 
@@ -50,5 +46,34 @@ class MainActivity : AppCompatActivity() {
         pokemonNameTextView.text = "Name: $pokemonName"
         typeTextView.text = "Type: $pokemonType"
     }
+
+    private fun fetchRandomPokemon() {
+        val randomPokemonId = (1..898).random()
+        val randomPokemonUrl = "https://pokeapi.co/api/v2/pokemon/$randomPokemonId"
+
+        val client = AsyncHttpClient()
+        client.get(randomPokemonUrl, object : JsonHttpResponseHandler() {
+            override fun onSuccess(statusCode: Int, headers: Headers, response: JSON) {
+                try {
+
+                    val name = response.jsonObject.getString("name").capitalize()
+                    val types = response.jsonObject.getJSONArray("types")
+                    val type = types.getJSONObject(0).getJSONObject("type").getString("name").capitalize()
+
+
+                    pokemonName = name
+                    pokemonType = type
+                    updatePokemonData()
+                } catch (e: JSONException) {
+                    Log.e("MainActivity", "Error parsing JSON: ${e.message}")
+                }
+            }
+
+            override fun onFailure(statusCode: Int, headers: Headers?, response: String?, throwable: Throwable?) {
+                Log.e("MainActivity", "Failed to fetch Pokémon data: ${throwable?.message}")
+            }
+        })
+    }
+
 }
 
