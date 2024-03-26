@@ -17,11 +17,13 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var pokemonNameTextView: TextView
     private lateinit var typeTextView: TextView
+    private lateinit var hpTextView: TextView
     private lateinit var loadPokemonButton: Button
 
 
     private var pokemonName: String = ""
     private var pokemonType: String = ""
+    private var pokemonHP: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,11 +31,13 @@ class MainActivity : AppCompatActivity() {
 
         pokemonNameTextView = findViewById(R.id.pokemonName)
         typeTextView = findViewById(R.id.type)
+        hpTextView = findViewById(R.id.hpTextView)
         loadPokemonButton = findViewById(R.id.loadPokemonButton)
 
 
         pokemonNameTextView.text = "Name: $pokemonName"
         typeTextView.text = "Type: $pokemonType"
+        hpTextView.text = "HP: $pokemonHP"
 
         loadPokemonButton.setOnClickListener {
 
@@ -41,10 +45,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun updatePokemonData() {
-        // Update TextViews with the new Pokemon data
-        pokemonNameTextView.text = "Name: $pokemonName"
-        typeTextView.text = "Type: $pokemonType"
+    private fun updatePokemonData(name: String, type: String, hp: Int) {
+
+        pokemonNameTextView.text = "Name: $name"
+        typeTextView.text = "Type: $type"
+        hpTextView.text = "HP: $hp"
     }
 
     private fun fetchRandomPokemon() {
@@ -55,15 +60,13 @@ class MainActivity : AppCompatActivity() {
         client.get(randomPokemonUrl, object : JsonHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Headers, response: JSON) {
                 try {
-
                     val name = response.jsonObject.getString("name").capitalize()
                     val types = response.jsonObject.getJSONArray("types")
                     val type = types.getJSONObject(0).getJSONObject("type").getString("name").capitalize()
+                    val hp = response.jsonObject.getJSONArray("stats").getJSONObject(0).getInt("base_stat")
 
-
-                    pokemonName = name
-                    pokemonType = type
-                    updatePokemonData()
+                    // Update the Pokemon data
+                    updatePokemonData(name, type, hp)
                 } catch (e: JSONException) {
                     Log.e("MainActivity", "Error parsing JSON: ${e.message}")
                 }
@@ -74,6 +77,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
 
 }
 
