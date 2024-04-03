@@ -1,7 +1,10 @@
+package com.example.pokedex
+
+import PokemonAdapter
 import android.os.Bundle
+import androidx.annotation.OptIn
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
-import com.codepath.asynchttpclient.Headers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -9,9 +12,11 @@ import org.json.JSONException
 import org.json.JSONObject
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.media3.common.util.Log
+import androidx.media3.common.util.UnstableApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
+import okhttp3.Headers
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         // Fetch data for each Pokémon ID
-        for (pokemonId in 1..898) {
+        for (pokemonId in 1..20) {
             fetchPokemonById(pokemonId)
         }
     }
@@ -37,14 +42,18 @@ class MainActivity : AppCompatActivity() {
         val pokemonUrl = "https://pokeapi.co/api/v2/pokemon/$pokemonId"
 
         val client = AsyncHttpClient()
-        client.get(pokemonUrl, object: JsonHttpResponseHandler() {
-            override fun onSuccess(statusCode: Int, headers: List<Headers>?, response: JsonHttpResponseHandler.JSON?) {
+        client.get(pokemonUrl, object : JsonHttpResponseHandler() {
+            @OptIn(UnstableApi::class)
+            override fun onSuccess(statusCode: Int, headers: Headers?, response: JSON?) {
                 try {
                     if (response is JSONObject) {
                         val name = response.getString("name").capitalize()
                         val typesArray = response.getJSONArray("types")
-                        val type = typesArray.getJSONObject(0).getJSONObject("type").getString("name").capitalize()
-                        val hp = response.getJSONArray("stats").getJSONObject(0).getInt("base_stat")
+                        val type =
+                            typesArray.getJSONObject(0).getJSONObject("type").getString("name")
+                                .capitalize()
+                        val hp = response.getJSONArray("stats").getJSONObject(0)
+                            .getInt("base_stat")
 
                         val pokemon = Pokemon(name, type, hp)
                         updateRecyclerView(pokemon)
@@ -56,11 +65,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(statusCode: Int, headers: List<Headers>?, response: String?, throwable: Throwable?) {
+            @OptIn(UnstableApi::class)
+            override fun onFailure(statusCode: Int, headers: Headers, response: String?, throwable: Throwable?) {
                 Log.e("MainActivity", "Failed to fetch Pokémon data for ID $pokemonId: ${throwable?.message}")
             }
-
-
         })
     }
 
@@ -71,6 +79,6 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-class Pokemon(name: String, type: String, hp: Int) {
+data class Pokemon(val name: String, val type: String, val hp: Int) {
 
 }

@@ -37,7 +37,6 @@ android {
 
 dependencies {
     implementation("com.codepath.libraries:asynchttpclient:2.2.0")
-    implementation("com.codepath.asynchttpclient:async-http-client-android:2.2.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
