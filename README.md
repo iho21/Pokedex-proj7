@@ -1,16 +1,16 @@
 <!-- (This is a comment) INSTRUCTIONS: Go through this page and fill out any **bolded** entries with their correct values.-->
 
-# AND101 Project 5 - Choose Your Own API
+# AND101 Project 6 - CYOAPI Part 2: RecyclerView Edition
 
 Submitted by: Ivan Ho
 
-Time spent: 20 hours spent in total
+Time spent: 40 hours spent in total.
 
 ## Summary
 
-Pokedex is an android app that pops up a random pokemon with a push of a button.
+Pokedex is an Android app that gets information about Pokemon.
 
-If I had to describe this project in three (3) emojis, they would be: ⌚🤔💻
+If I had to describe this project in three (3) emojis, they would be: 🧐🤷‍♂️😖
 
 ## Application Features
 
@@ -19,32 +19,27 @@ If I had to describe this project in three (3) emojis, they would be: ⌚🤔�
 The following REQUIRED features are completed:
 
 - [X] Make an API call to an API of your choice using AsyncHTTPClient
-- [X] Display at least three (3) pieces of data for each API entry retrieved
-- [X] A working Button requests a new API entry and updates the data displayed
+- [X] Implement a RecyclerView to display a list of entries from the API
+- [X] Display at least three (3) pieces of data for each RecyclerView item
 
 The following STRETCH features are implemented:
 
-- [ ] Add a query to the API request
-  - The query I added is **FILL IN HERE**
-- [ ] Build a UI to allow users to add that query
+- [ ] Add a UI element for the user to interact with API further
+- [ ] Show a `Toast` or `Snackbar` when an item is clicked
+- [ ] Add item dividers with `DividerItemDecoration`
 
 The following EXTRA features are implemented:
 
 - [ ] List anything else that you added to improve the app!
 
-## API Choice
-
-My chosen API for this project is Pokemon API.
-
 ## Video Demo
 
 Here's a video / GIF that demos all of the app's implemented features:
 
-<img src='https://github.com/iho21/Pokedex/assets/73658947/dda58f1a-49ab-44c9-818d-abd4ee9e726b' title='Video Demo' width='' alt='Video Demo' />
+<img src='https://github.com/iho21/Pokedex-proj6/assets/73658947/0c4fcbea-c03c-41c4-97c1-a9cedb6f9df5' title='Video Demo' width='' alt='Video Demo' />
 
 
 
-GIF created with CodePath
 
 <!-- Recommended tools:
 - [Kap](https://getkap.co/) for macOS
