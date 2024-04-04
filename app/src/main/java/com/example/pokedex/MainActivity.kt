@@ -10,7 +10,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.json.JSONObject
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity
 import androidx.media3.common.util.Log
 import androidx.media3.common.util.UnstableApi
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,13 +46,14 @@ class MainActivity : AppCompatActivity() {
             @OptIn(UnstableApi::class)
             override fun onSuccess(statusCode: Int, headers: Headers?, response: JSON?) {
                 try {
-                    if (response is JSONObject) {
-                        val name = response.getString("name").capitalize()
-                        val typesArray = response.getJSONArray("types")
+                    val json = response?.jsonObject
+                    if (json is JSONObject) {
+                        val name = json.getString("name").capitalize()
+                        val typesArray = json.getJSONArray("types")
                         val type =
                             typesArray.getJSONObject(0).getJSONObject("type").getString("name")
                                 .capitalize()
-                        val hp = response.getJSONArray("stats").getJSONObject(0)
+                        val hp = json.getJSONArray("stats").getJSONObject(0)
                             .getInt("base_stat")
 
                         val pokemon = Pokemon(name, type, hp)
