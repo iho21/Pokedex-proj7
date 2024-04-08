@@ -4,7 +4,7 @@
 
 Submitted by: Ivan Ho
 
-Time spent: 0 hours spent in total
+Time spent: 9 hours spent in total
 
 ## Summary
 
