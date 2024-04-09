@@ -4,13 +4,13 @@
 
 Submitted by: Ivan Ho
 
-Time spent: 11 hours spent in total
+Time spent: 12 hours spent in total
 
 ## Summary
 
-Pokedex is an Android app that displays description of Pokemon
+Pokedex is an Android app that displays descriptions of Pokemon.
 
-If I had to describe this project in three (3) emojis, they would be: **emojis here**
+If I had to describe this project in three (3) emojis, they would be: 💻😍👍
 
 ## Application Features
 
@@ -37,22 +37,16 @@ The following EXTRA features are implemented:
 
 Here's a video / GIF that demos all of the app's implemented features:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Demo' width='' alt='Video Demo' />
+<img src='https://github.com/iho21/Pokedex-proj7/assets/73658947/d6824896-4b3c-49e1-8e1a-6767a3f4ef2d' title='Video Demo' width='' alt='Video Demo' />
 
-GIF created with **your chosen GIF tool**
-
-<!-- Recommended tools:
-- [Kap](https://getkap.co/) for macOS
-- [ScreenToGif](https://www.screentogif.com/) for Windows
-- [peek](https://github.com/phw/peek) for Linux. -->
 
 ## Notes
 
-Here's a place for any other notes on the app, it's creation process, or what you learned this unit!
+
 
 ## License
 
-Copyright **yyyy** **your name**
+Copyright 2024 Ivan Ho
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
