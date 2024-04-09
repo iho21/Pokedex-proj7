@@ -4,7 +4,7 @@
 
 Submitted by: Ivan Ho
 
-Time spent: 9 hours spent in total
+Time spent: 11 hours spent in total
 
 ## Summary
 
@@ -20,9 +20,9 @@ The following REQUIRED features are completed:
 
 - [X] App contains a RecyclerView that displays a list of scrollable data
 - [X] App displays at least two (2) pieces of data for each RecyclerView item
-- [ ] Use a downloadable font with custom color and size
-- [ ] Modify the theme of the app in `themes.xml`
-- [ ] Define and apply at least one style in **either** `themes.xml` or a new file `styles.xml`
+- [X] Use a downloadable font with custom color and size
+- [X] Modify the theme of the app in `themes.xml`
+- [X] Define and apply at least one style in **either** `themes.xml` or a new file `styles.xml`
 
 The following STRETCH features are implemented:
 
